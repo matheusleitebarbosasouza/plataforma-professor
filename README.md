@@ -6,6 +6,7 @@ Projeto desenvolvido em Java com Spring Boot para implementar as histórias de u
 ## Grupo 
 
 Arthur Rodrigues 
+
 Matheus Leite Barbosa Souza - 123210878
 ## Funcionalidades
 
