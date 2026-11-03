@@ -1,5 +1,5 @@
-package br.edu.plataforma.entity;
-import br.edu.plataforma.enums.StatusProblema;
+package plataforma.entidades;
+import plataforma.enums.StatusProblema;
 import jakarta.persistence.*;
 @Entity @Table(name="problemas") public class Problema {
 @Id @GeneratedValue(strategy=GenerationType.IDENTITY) public Long id;
