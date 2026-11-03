@@ -1,2 +1,26 @@
-# plataforma-professor
-Um projeto de PSOF que visa fazer uma aplicação para que projetos de PSOF sejam analisados pelos professores e tendo como mostrar 
+
+# Plataforma Professor — Spring Boot
+
+Projeto desenvolvido em Java com Spring Boot para implementar as histórias de usuário US1 a US5 de uma plataforma de atividades de PSOF, implementando as principais formas para tratar o projeto, usando-se do que aprendemos em relação a organização de codigo, GRASP e condutas do código.
+
+## Grupo 
+
+Arthur Rodrigues 
+Matheus Leite Barbosa Souza - 123210878
+## Funcionalidades
+
+- **US1:** Cadastro e gerenciamento de problemas de projeto de software.
+- **US2:** Cadastro e gerenciamento de estudantes.
+- **US3:** Cadastro e gerenciamento de estratégias de avaliação.
+- **US4:** Cadastro e gerenciamento de turmas.
+- **US5:** Associação de estudantes às turmas.
+
+## Executar
+
+É necessário ter Java 17 e Maven instalados.
+
+```bash
+mvn spring-boot:run
+```
+
+API disponível em: http://localhost:8080/v1
