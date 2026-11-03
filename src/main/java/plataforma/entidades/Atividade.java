@@ -1,4 +1,4 @@
-package br.edu.plataforma.entity;
+package plataforma.entidades;
 import jakarta.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
