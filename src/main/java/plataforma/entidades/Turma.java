@@ -1,4 +1,4 @@
-package br.edu.plataforma.entity;
+package plataforma.entidades;
 import br.edu.plataforma.enums.StatusTurma;
 import jakarta.persistence.*;
 import java.util.HashSet;
