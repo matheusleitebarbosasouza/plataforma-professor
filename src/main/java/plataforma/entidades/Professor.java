@@ -1,4 +1,4 @@
-package br.edu.plataforma.entity;
+package plataforma.entidades;
 import jakarta.persistence.*;
 @Entity @Table(name="professores") public class Professor {
 @Id @GeneratedValue(strategy=GenerationType.IDENTITY) public Long id;
