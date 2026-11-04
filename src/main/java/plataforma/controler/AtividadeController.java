@@ -1,6 +1,6 @@
 package plataforma.controller;
 import plataforma.dto.*;
-import plataforma.entity.*;
+import plataforma.entidades.*;
 import plataforma.service.AtividadeService;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
