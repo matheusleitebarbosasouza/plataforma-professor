@@ -1,7 +1,7 @@
-package br.edu.plataforma.controller;
-import br.edu.plataforma.dto.*;
-import br.edu.plataforma.entity.*;
-import br.edu.plataforma.service.ProblemaService;
+package plataforma.controller;
+import plataforma.dto.*;
+import plataforma.entidades.*;
+import plataforma.service.ProblemaService;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
