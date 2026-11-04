@@ -1,2 +1,2 @@
-package br.edu.plataforma.enums;
+package plataforma.enums;
 public enum StatusTurma { ATIVA, ENCERRADA }
