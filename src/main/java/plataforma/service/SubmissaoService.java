@@ -1,5 +1,6 @@
 package plataforma.service;
 
+import org.springframework.context.ApplicationEventPublisher;
 import plataforma.dto.SubmissaoRequest;
 import plataforma.entidades.*;
 import plataforma.enums.*;
