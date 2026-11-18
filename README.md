@@ -10,8 +10,17 @@ Arthur Rodrigues
 Matheus Leite Barbosa Souza - 123210878
 ## Funcionalidades
 
+
+
 - **US1:** Cadastro e gerenciamento de problemas de projeto de software.
 - **US2:** Cadastro e gerenciamento de estudantes.
 - **US3:** Cadastro e gerenciamento de estratégias de avaliação.
 - **US4:** Cadastro e gerenciamento de turmas.
 - **US5:** Associação de estudantes às turmas.
+
+18/11
+- **US6:** Criação de Atividades.
+- **US7:** Consulta de Atividades.
+- **US8:** Submissão de Soluções.
+- **US9:** Acompanhamento da Submissão.
+- **US10:** Avaliação da Solução.
