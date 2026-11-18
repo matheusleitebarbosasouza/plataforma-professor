@@ -17,6 +17,9 @@ public class SubmissaoService {
     private final SubmissaoRepository repo;
     private final EstudanteService estudantes;
     private final AtividadeService atividades;
+    private final FilaSubmissaoService fila;
+    private final HistoricoStatusRepository historicos;
+    private final NotificacaoService notificacoes;
 
     public SubmissaoService(
             SubmissaoRepository repo,
