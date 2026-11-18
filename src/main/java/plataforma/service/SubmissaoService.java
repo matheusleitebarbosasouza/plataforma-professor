@@ -14,6 +14,7 @@ import java.util.List;
 @Service
 public class SubmissaoService {
 
+    private final ApplicationEventPublisher eventPublisher;
     private final SubmissaoRepository repo;
     private final EstudanteService estudantes;
     private final AtividadeService atividades;
@@ -73,8 +74,25 @@ public class SubmissaoService {
         submissao.dataHora = LocalDateTime.now();
         submissao.versao = ultimaVersao + 1;
         submissao.status = StatusSubmissao.SUBMETIDA;
+        
+        Submissao salva = repo.save(submissao);
 
-        return repo.save(submissao);
+        HistoricoStatus historico = new HistoricoStatus();
+        historico.submissao = salva;
+        historico.statusAnterior = null;
+        historico.statusNovo = StatusSubmissao.SUBMETIDA;
+        historico.dataHora = LocalDateTime.now();
+        
+        historicos.save(historico);
+        
+        notificacoes.notificar(
+            salva,
+            StatusSubmissao.SUBMETIDA
+        );
+        
+        fila.enfileirar(salva.id);
+        
+        return salva;
     }
 
     @Transactional(readOnly = true)
