@@ -1,11 +1,17 @@
+
 package plataforma.service;
 
-import org.springframework.context.ApplicationEventPublisher;
 import plataforma.dto.SubmissaoRequest;
-import plataforma.entidades.*;
-import plataforma.enums.*;
+import plataforma.entidades.Atividade;
+import plataforma.entidades.Estudante;
+import plataforma.entidades.HistoricoStatus;
+import plataforma.entidades.Submissao;
+import plataforma.enums.StatusAtividade;
+import plataforma.enums.StatusSubmissao;
+import plataforma.repositorio.HistoricoStatusRepository;
 import plataforma.repositorio.SubmissaoRepository;
 
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,22 +21,24 @@ import java.util.List;
 @Service
 public class SubmissaoService {
 
-    private final ApplicationEventPublisher eventPublisher;
     private final SubmissaoRepository repo;
     private final EstudanteService estudantes;
     private final AtividadeService atividades;
-    private final FilaSubmissaoService fila;
     private final HistoricoStatusRepository historicos;
-    private final NotificacaoService notificacoes;
+    private final ApplicationEventPublisher eventPublisher;
 
     public SubmissaoService(
             SubmissaoRepository repo,
             EstudanteService estudantes,
-            AtividadeService atividades) {
+            AtividadeService atividades,
+            HistoricoStatusRepository historicos,
+            ApplicationEventPublisher eventPublisher) {
 
         this.repo = repo;
         this.estudantes = estudantes;
         this.atividades = atividades;
+        this.historicos = historicos;
+        this.eventPublisher = eventPublisher;
     }
 
     @Transactional
@@ -75,25 +83,37 @@ public class SubmissaoService {
         submissao.dataHora = LocalDateTime.now();
         submissao.versao = ultimaVersao + 1;
         submissao.status = StatusSubmissao.SUBMETIDA;
-        
+
+        // Salvar a submissão
         Submissao salva = repo.save(submissao);
 
+        // Registrar o status inicial no histórico
         HistoricoStatus historico = new HistoricoStatus();
+
         historico.submissao = salva;
         historico.statusAnterior = null;
         historico.statusNovo = StatusSubmissao.SUBMETIDA;
         historico.dataHora = LocalDateTime.now();
-        
+
         historicos.save(historico);
-        
-        notificacoes.notificar(
-            salva,
-            StatusSubmissao.SUBMETIDA
+
+        // Publicar evento para processamento após o commit
+        eventPublisher.publishEvent(
+            new SubmissaoCriadaEvent(salva.id)
         );
-        
-        fila.enfileirar(salva.id);
-        
+
         return salva;
+    }
+
+    @Transactional(readOnly = true)
+    public Submissao buscar(Long id) {
+
+        return repo.findById(id)
+                .orElseThrow(() ->
+                    new IllegalArgumentException(
+                        "Submissão não encontrada"
+                    )
+                );
     }
 
     @Transactional(readOnly = true)
