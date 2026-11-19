@@ -41,7 +41,7 @@ public class SubmissaoController {
                 .body(SubmissaoResponse.from(submissao));
     }
 
-    // US8 - Listar versões de uma submissão
+    // US8 - Listar versões
     @GetMapping("/estudante/{estudanteId}/atividade/{atividadeId}")
     public ResponseEntity<List<SubmissaoResponse>> listarVersoes(
             @PathVariable Long estudanteId,
@@ -56,7 +56,7 @@ public class SubmissaoController {
         return ResponseEntity.ok(respostas);
     }
 
-    // US9 - Consultar status atual
+    // US9 - Consultar estado atual
     @GetMapping("/{id}/status")
     public ResponseEntity<StatusSubmissao> consultarStatus(
             @PathVariable Long id) {
@@ -66,16 +66,16 @@ public class SubmissaoController {
         return ResponseEntity.ok(submissao.status);
     }
 
-    // US9 - Consultar histórico de status
+    // US9 - Consultar histórico de estados
     @GetMapping("/{id}/historico")
     public ResponseEntity<List<HistoricoStatusResponse>> consultarHistorico(
             @PathVariable Long id) {
 
-        List<HistoricoStatusResponse> respostas = statusService
-                .listarHistorico(id)
-                .stream()
-                .map(HistoricoStatusResponse::from)
-                .toList();
+        List<HistoricoStatusResponse> respostas =
+                statusService.listarHistorico(id)
+                    .stream()
+                    .map(HistoricoStatusResponse::from)
+                    .toList();
 
         return ResponseEntity.ok(respostas);
     }
