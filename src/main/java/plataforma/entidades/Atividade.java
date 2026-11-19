@@ -30,6 +30,14 @@ public class Atividade {
         inverseJoinColumns = @JoinColumn(name = "estrategia_id")
     )
     public Set<EstrategiaAvaliacao> estrategias = new HashSet<>();
+    
+    @ManyToMany
+    @JoinTable(
+        name = "atividade_llms_adicionais",
+        joinColumns = @JoinColumn(name = "atividade_id"),
+        inverseJoinColumns = @JoinColumn(name = "llm_id")
+    )
+    public Set<LLM> llmsAdicionais = new HashSet<>();
 
     @ManyToMany
     @JoinTable(
