@@ -1,3 +1,8 @@
+package plataforma.entidades;
+
+import jakarta.persistence.*;
+import plataforma.enums.TipoEstrategia;
+
 @Entity
 @Table(name = "estrategias")
 public class EstrategiaAvaliacao {

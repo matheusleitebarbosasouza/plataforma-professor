@@ -41,6 +41,10 @@ public class SubmissaoService {
             );
         }
 
+        if (atividade.prazoSubmissao != null && LocalDateTime.now().isAfter(atividade.prazoSubmissao)) {
+            throw new IllegalStateException("O prazo de submissão da atividade foi encerrado");
+        }
+
         // Verificar se o estudante pertence à turma
         boolean pertence = atividade.turma.estudantes
                 .stream()
