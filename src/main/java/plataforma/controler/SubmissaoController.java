@@ -29,7 +29,7 @@ public class SubmissaoController {
         this.statusService = statusService;
     }
 
-    // US8 - Criar submissão
+    //  - Criar submissão
     @PostMapping
     public ResponseEntity<SubmissaoResponse> criar(
             @RequestBody @Valid SubmissaoRequest request) {
@@ -41,7 +41,7 @@ public class SubmissaoController {
                 .body(SubmissaoResponse.from(submissao));
     }
 
-    // US8 - Listar versões
+    //  - Listar versões
     @GetMapping("/estudante/{estudanteId}/atividade/{atividadeId}")
     public ResponseEntity<List<SubmissaoResponse>> listarVersoes(
             @PathVariable Long estudanteId,
@@ -56,7 +56,7 @@ public class SubmissaoController {
         return ResponseEntity.ok(respostas);
     }
 
-    // US9 - Consultar estado atual
+    //  - Consultar estado atual
     @GetMapping("/{id}/status")
     public ResponseEntity<StatusSubmissao> consultarStatus(
             @PathVariable Long id) {
@@ -66,7 +66,7 @@ public class SubmissaoController {
         return ResponseEntity.ok(submissao.status);
     }
 
-    // US9 - Consultar histórico de estados
+    //  - Consultar histórico de estados
     @GetMapping("/{id}/historico")
     public ResponseEntity<List<HistoricoStatusResponse>> consultarHistorico(
             @PathVariable Long id) {
