@@ -79,7 +79,8 @@ public class ProcessamentoService {
             }
         });
     }
-
+    
+    
     @PreDestroy
     public void encerrar() {
         executor.shutdownNow();
