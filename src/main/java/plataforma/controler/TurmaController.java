@@ -1,4 +1,4 @@
-package plataforma.controller;
+package plataforma.controler;
 import plataforma.dto.*;
 import plataforma.entidades.*;
 import plataforma.service.TurmaService;
